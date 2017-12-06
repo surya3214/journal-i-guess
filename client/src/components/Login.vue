@@ -3,7 +3,7 @@
     <v-flex xs6 offset-xs3>
       <div class="white elevation-2">
         <v-toolbar flat dense dark class="cyan">
-          <v-toolbar-title>Register</v-toolbar-title>
+          <v-toolbar-title>Log In</v-toolbar-title>
         </v-toolbar>
         <div class="pl-4 pr-4 pt-2 pb-2">
           <v-text-field
@@ -16,9 +16,9 @@
             :append-icon-cb="() => (pwd_visible = !pwd_visible)"
             name="password" label="Password" v-model="password"
             hint="Atleast 8 and not more than 32 characters long" min="8" max="32" /><br><br>
-          <span class="error" v-html="error" /><br><br>
+          <div class="error" v-html="error" /><br><br>
           <v-btn
-            @click="register" class="cyan" flat>Register</v-btn>
+            @click="login" class="cyan" flat>Log In</v-btn>
         </div>
       </div>
     </v-flex>
@@ -41,9 +41,9 @@ export default {
     }
   },
   methods: {
-    async register () {
+    async login () {
       try {
-        const response = await AuthenticationService.register({
+        const response = await AuthenticationService.login({
           email: this.email,
           password: this.password
         })

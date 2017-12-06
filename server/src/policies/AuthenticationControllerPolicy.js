@@ -18,9 +18,9 @@ module.exports = {
           break
         case 'password':
           res.status(400).send({
-            error: `Please provide a valid password matching the following conditions:
-                    1. It must be alphanumeric
-                    2. It must have at least 8 and not more than 32 characters`
+            error: `Please provide a valid password matching the following conditions:<br>
+                    1. It must be alphanumeric<br>
+                    2. It must have at least 8 and not more than 32 characters long`
           })
           break
         default:
