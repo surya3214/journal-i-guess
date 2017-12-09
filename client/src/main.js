@@ -4,17 +4,21 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import Vuetify from 'vuetify'
+import { sync } from 'vuex-router-sync'
 import 'vuetify/dist/vuetify.min.css'
-// import 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons'
+import store from '@/store/store'
 
 Vue.config.productionTip = false
 
 Vue.use(Vuetify)
 
+sync(store, router)
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
+  store,
   template: '<App/>',
   components: { App }
 })

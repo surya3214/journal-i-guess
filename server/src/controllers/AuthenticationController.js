@@ -20,7 +20,6 @@ module.exports = {
       })
     } catch (err) {
       res.status(400).send({
-        err: err,
         error: `This email account is already in use`
       })
     }
