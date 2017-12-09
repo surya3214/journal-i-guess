@@ -6,16 +6,21 @@
           <v-toolbar-title>Register</v-toolbar-title>
         </v-toolbar>
         <div class="pl-4 pr-4 pt-2 pb-2">
-          <v-text-field
-            :rules="[rules.required]"
-            type="email" name="email" label="Email" v-model="email" />
-          <v-text-field
-            :rules="[rules.required]"
-            :type="pwd_visible ? 'text' :'password'"
-            :append-icon="pwd_visible ? 'visibility' : 'visibility_off'"
-            :append-icon-cb="() => (pwd_visible = !pwd_visible)"
-            name="password" label="Password" v-model="password"
-            hint="Atleast 8 and not more than 32 characters long" min="8" max="32" /><br><br>
+          <form
+            name="journal-register-form"
+            autocomplete="off">
+            <v-text-field
+              :rules="[rules.required]"
+              type="email" name="email" label="Email" v-model="email" />
+            <v-text-field
+              :rules="[rules.required]"
+              :type="pwd_visible ? 'text' :'password'"
+              :append-icon="pwd_visible ? 'visibility' : 'visibility_off'"
+              :append-icon-cb="() => (pwd_visible = !pwd_visible)"
+              name="password" label="Password" v-model="password"
+              hint="Atleast 8 and not more than 32 characters long" min="8" max="32" />
+          </form>
+          <br><br>
           <span class="error" v-html="error" /><br><br>
           <v-btn
             @click="register" class="cyan" flat>Register</v-btn>

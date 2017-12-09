@@ -13,7 +13,11 @@ module.exports = {
   async register (req, res) {
     try {
       const user = await User.create(req.body)
-      res.send(user.toJSON())
+      const userJson = user.toJSON()
+      res.send({
+        user: userJson,
+        token: jwtSignUser(userJson)
+      })
     } catch (err) {
       res.status(400).send({
         err: err,
@@ -34,13 +38,18 @@ module.exports = {
           error: 'User information is not present'
         })
       }
-      const isPasswordValid = password === user.password
+      const isPasswordValid = await user.comparePassword(password)
       if (!isPasswordValid) {
         res.status(403).send({
           error: 'User information is not present'
         })
       }
-      res.send(user.toJSON())
+
+      const userJson = user.toJSON()
+      res.send({
+        user: userJson,
+        token: jwtSignUser(userJson)
+      })
     } catch (err) {
       res.status(500).send({
         error: 'An unknown error has occured'
